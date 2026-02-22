@@ -2,18 +2,18 @@
 
 Projeto de vitrine digital para pequenos negócios.
 
-## 🚀 Tecnologias
+## Tecnologias
 - React
 - TypeScript
 - Vite
 - Tailwind CSS
 
-## 📦 Funcionalidades
+## Funcionalidades
 - Listagem de produtos
 - Página individual de produto
 - Carrinho visual
 - Layout responsivo
 - Estrutura escalável
 
-## 🎯 Objetivo
+## Objetivo
 Modelo comercial para clientes que desejam iniciar vendas online com baixo investimento.
