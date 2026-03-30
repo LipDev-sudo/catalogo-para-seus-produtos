@@ -2,7 +2,7 @@
 @import './tailwind.css';
 @import './theme.css';
 
-/* Custom animations for hero section */
+/* Custom animations */
 @keyframes blob {
   0% {
     transform: translate(0px, 0px) scale(1);
@@ -24,4 +24,45 @@
 
 .animation-delay-2000 {
   animation-delay: 2s;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0FDF4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #16A34A;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #059669;
+}
+
+/* Selection color */
+::selection {
+  background-color: #16A34A;
+  color: white;
+}
+
+/* Ping animation for WhatsApp floating button */
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
