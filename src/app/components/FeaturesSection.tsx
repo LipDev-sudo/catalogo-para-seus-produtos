@@ -1,92 +1,20 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { BadgeDollarSign, MessageCircle, MousePointerClick, Smartphone } from 'lucide-react';
+import { MessageCircle, ScanSearch, Smartphone } from 'lucide-react';
 
-const features = [
-  {
-    icon: BadgeDollarSign,
-    title: 'Sem Mensalidade',
-    description: 'Comece a vender online sem pagar nada. Sem taxas escondidas, sem surpresas.',
-    color: 'from-[#008060] to-[#004c3f]',
-    bgLight: 'bg-[#e6f7ef]',
-  },
-  {
-    icon: MessageCircle,
-    title: 'WhatsApp Integrado',
-    description: 'Seus clientes pedem direto pelo WhatsApp com um clique. Simples e direto.',
-    color: 'from-[#25D366] to-[#128C7E]',
-    bgLight: 'bg-[#e6f7ef]',
-  },
-  {
-    icon: MousePointerClick,
-    title: 'Facil de Usar',
-    description: 'Sem complicacao. Configure seu catalogo em poucos minutos, sem conhecimento tecnico.',
-    color: 'from-[#95BF47] to-[#7da638]',
-    bgLight: 'bg-[#f7fee7]',
-  },
-  {
-    icon: Smartphone,
-    title: 'Design Responsivo',
-    description: 'Funciona perfeitamente no celular, tablet e computador. Bonito em qualquer tela.',
-    color: 'from-[#008060] to-[#95BF47]',
-    bgLight: 'bg-[#e6f7ef]',
-  },
+const steps = [
+  { icon: ScanSearch, number: '01', title: 'Encontre com contexto', description: 'Categoria, material, valor inicial e prazo aparecem antes da conversa.' },
+  { icon: MessageCircle, number: '02', title: 'Pergunte pela peça certa', description: 'O WhatsApp abre com o nome do item e a intenção de compra já organizados.' },
+  { icon: Smartphone, number: '03', title: 'Continue no seu ritmo', description: 'A experiência prioriza o celular, sem exigir cadastro ou simular um checkout.' },
 ];
 
-export const FeaturesSection: React.FC = () => {
+export function FeaturesSection() {
   return (
-    <section className="py-16 md:py-24 bg-[#f0fdf4]" id="vantagens">
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Section header */}
-        <div className="text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="inline-block bg-white text-[#008060] text-sm font-semibold px-4 py-1.5 rounded-full mb-4 border border-[#008060]/10">
-              Vantagens
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1a1a] mb-3 tracking-tight">
-              Por que escolher nosso Catalogo?
-            </h2>
-            <p className="text-gray-500 max-w-xl mx-auto text-lg">
-              A forma mais simples e profissional de vender online
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Features grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group bg-white rounded-2xl p-7 hover:shadow-xl hover:shadow-[#008060]/5 transition-all duration-500 border border-[#e2e8f0] hover:border-[#008060]/20 relative overflow-hidden"
-            >
-              {/* Decorative gradient corner */}
-              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-[#e6f7ef] to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-              <div className={`inline-flex p-3.5 rounded-2xl ${feature.bgLight} mb-5 group-hover:scale-110 transition-transform duration-300`}>
-                <div className={`bg-gradient-to-br ${feature.color} p-2 rounded-xl`}>
-                  <feature.icon className="size-5 text-white" />
-                </div>
-              </div>
-
-              <h3 className="font-bold text-[#1a1a1a] text-lg mb-2 group-hover:text-[#008060] transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+    <section className="border-y border-[#483f38] bg-[#302b27] py-16 text-white md:py-20" id="como-funciona">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl"><p className="text-xs font-bold uppercase tracking-[.18em] text-[#e2a48f]">Catálogo conversacional</p><h2 className="mt-3 text-3xl font-semibold tracking-[-.04em] sm:text-4xl">Da descoberta à conversa, sem passos artificiais.</h2></div>
+        <ol className="mt-10 grid gap-px overflow-hidden rounded-[1.5rem] border border-white/15 bg-white/15 md:grid-cols-3">
+          {steps.map((step) => <li key={step.number} className="bg-[#302b27] p-6 sm:p-8"><div className="flex items-center justify-between"><step.icon aria-hidden="true" className="size-5 text-[#e2a48f]" /><span className="text-xs font-bold tracking-[.18em] text-white/40">{step.number}</span></div><h3 className="mt-8 text-xl font-semibold">{step.title}</h3><p className="mt-3 text-sm leading-6 text-white/65">{step.description}</p></li>)}
+        </ol>
       </div>
     </section>
   );
-};
+}

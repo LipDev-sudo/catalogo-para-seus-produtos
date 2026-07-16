@@ -4,63 +4,41 @@ export interface Product {
   description: string;
   price: number;
   image: string;
-  category: string;
+  category: 'Café' | 'Mesa' | 'Decoração';
+  material: string;
+  leadTime: string;
 }
 
 export const products: Product[] = [
-  {
-    id: '1',
-    name: 'Bolsa Premium de Couro',
-    description: 'Bolsa elegante de couro sintético com acabamento premium. Ideal para o dia a dia.',
-    price: 189.90,
-    image: 'https://images.unsplash.com/photo-1575201046471-082b5c1a1e79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxmYXNoaW9uJTIwaGFuZGJhZyUyMGFjY2Vzc29yaWVzfGVufDF8fHx8MTc3MTc3MTgwN3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    category: 'Acessórios',
-  },
-  {
-    id: '2',
-    name: 'Vestido Casual Floral',
-    description: 'Vestido leve e confortável com estampa floral. Perfeito para o verão.',
-    price: 149.90,
-    image: 'https://images.unsplash.com/photo-1664894626626-65ab49e0077d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3b21lbiUyMGNhc3VhbCUyMGRyZXNzJTIwZmFzaGlvbnxlbnwxfHx8fDE3NzE3NzE4MDh8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    category: 'Roupas',
-  },
-  {
-    id: '3',
-    name: 'Tênis Esportivo Branco',
-    description: 'Tênis confortável e estiloso. Design minimalista e moderno.',
-    price: 299.90,
-    image: 'https://images.unsplash.com/photo-1651371409956-20e79c06a8bb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzbmVha2VycyUyMHNob2VzJTIwd2hpdGV8ZW58MXx8fHwxNzcxNzU5Mjc4fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    category: 'Calçados',
-  },
-  {
-    id: '4',
-    name: 'Óculos de Sol Moderno',
-    description: 'Óculos de sol com proteção UV e design contemporâneo.',
-    price: 129.90,
-    image: 'https://images.unsplash.com/photo-1764722755184-9863f7b11ab6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdW5nbGFzc2VzJTIwZmFzaGlvbiUyMGFjY2Vzc29yaWVzfGVufDF8fHx8MTc3MTczODUxNXww&ixlib=rb-4.1.0&q=80&w=1080',
-    category: 'Acessórios',
-  },
-  {
-    id: '5',
-    name: 'Relógio Clássico',
-    description: 'Relógio elegante com pulseira de couro e mostrador minimalista.',
-    price: 249.90,
-    image: 'https://images.unsplash.com/photo-1762513461072-5008c7f6511d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx3YXRjaCUyMGx1eHVyeSUyMGFjY2Vzc29yaWVzfGVufDF8fHx8MTc3MTczODUxNHww&ixlib=rb-4.1.0&q=80&w=1080',
-    category: 'Acessórios',
-  },
-  {
-    id: '6',
-    name: 'Colar Minimalista',
-    description: 'Colar delicado e elegante. Perfeito para qualquer ocasião.',
-    price: 89.90,
-    image: 'https://images.unsplash.com/photo-1762505464426-7467c051ea76?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxqZXdlbHJ5JTIwbmVja2xhY2UlMjBlbGVnYW50fGVufDF8fHx8MTc3MTc3MTgwOXww&ixlib=rb-4.1.0&q=80&w=1080',
-    category: 'Joias',
-  },
+  { id: 'xicara-serra', name: 'Xícara Serra', description: 'Xícara de linhas simples, feita em pequenos lotes para cafés sem pressa.', price: 68, image: '/images/products/xicara-serra.webp', category: 'Café', material: 'Grés esmaltado', leadTime: 'Pronta em até 7 dias' },
+  { id: 'prato-horizonte', name: 'Prato Horizonte', description: 'Prato raso com borda terracota e acabamento pontilhado, pensado para a mesa diária.', price: 82, image: '/images/products/prato-horizonte.webp', category: 'Mesa', material: 'Cerâmica de alta temperatura', leadTime: 'Pronto em até 10 dias' },
+  { id: 'tigela-vale', name: 'Tigela Vale', description: 'Tigela funda de formato orgânico para servir caldos, frutas ou acompanhamentos.', price: 74, image: '/images/products/tigela-vale.webp', category: 'Mesa', material: 'Porcelana fosca', leadTime: 'Pronta em até 10 dias' },
+  { id: 'vaso-caminho', name: 'Vaso Caminho', description: 'Vaso escultórico de superfície natural; cada unidade preserva marcas do trabalho manual.', price: 148, image: '/images/products/vaso-caminho.webp', category: 'Decoração', material: 'Argila clara sem esmalte', leadTime: 'Feito sob encomenda' },
+  { id: 'porta-vela-bruma', name: 'Porta-vela Bruma', description: 'Peça compacta com contorno irregular para velas aromáticas e pontos de luz suaves.', price: 58, image: '/images/products/castical-brasa.webp', category: 'Decoração', material: 'Cerâmica esmaltada', leadTime: 'Pronto em até 5 dias' },
+  { id: 'copo-noite', name: 'Copo Noite', description: 'Copo sem alça com textura mineral e esmalte escuro, ideal para café ou chá.', price: 62, image: '/images/products/jarra-campo.webp', category: 'Café', material: 'Grés pigmentado', leadTime: 'Pronto em até 7 dias' },
 ];
 
-// WhatsApp helper function
-export const generateWhatsAppLink = (product: Product): string => {
-  const phoneNumber = '5511999999999'; // Replace with your WhatsApp number
-  const message = `Olá! Gostaria de saber mais sobre:\n\n*${product.name}*\nPreço: R$ ${product.price.toFixed(2)}`;
-  return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+const normalize = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR').trim();
+
+export const filterProducts = (catalog: Product[], query: string, category: string) => {
+  const normalizedQuery = normalize(query);
+  return catalog.filter((product) => {
+    const matchesCategory = category === 'Todos' || product.category === category;
+    const searchable = normalize([product.name, product.description, product.material, product.category].join(' '));
+    return matchesCategory && (!normalizedQuery || searchable.includes(normalizedQuery));
+  });
 };
+
+export const generateWhatsAppLink = (product: Product): string => {
+  const message = [
+    'Olá! Encontrei esta peça na demonstração da Pratele:',
+    '',
+    `*${product.name}*`,
+    `A partir de R$ ${product.price.toFixed(2).replace('.', ',')}`,
+    '',
+    'Quero conversar sobre disponibilidade e acabamento.',
+  ].join('\n');
+  return `https://wa.me/?text=${encodeURIComponent(message)}`;
+};
+
+export const generalWhatsAppLink = `https://wa.me/?text=${encodeURIComponent('Olá! Vi o catálogo demonstrativo da Pratele e quero conversar sobre uma encomenda.')}`;
