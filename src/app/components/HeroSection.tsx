@@ -15,10 +15,10 @@ export function HeroSection() {
         </div>
         <div className="relative mx-auto w-full max-w-xl" aria-label="Seleção de cerâmicas do catálogo">
           <div className="grid grid-cols-[1.1fr_.9fr] gap-3 sm:gap-4">
-            <img src="/images/products/vaso-caminho.webp" alt="Conjunto de vasos de cerâmica clara sobre pedestal" className="aspect-[4/5] w-full rounded-[1.5rem] object-cover" width="960" height="960" fetchPriority="high" />
+            <img src="/images/products/vaso-caminho.webp" alt="Conjunto de vasos de cerâmica clara sobre pedestal" className="aspect-[4/5] w-full rounded-[1.5rem] object-cover" width="960" height="960" />
             <div className="grid gap-3 pt-8 sm:gap-4 sm:pt-12">
-              <img src="/images/products/prato-horizonte.webp" alt="Prato artesanal de borda terrosa" className="aspect-square w-full rounded-[1.25rem] object-cover" width="960" height="960" fetchPriority="high" />
-              <div className="rounded-[1.25rem] bg-[#b85f43] p-5 text-white sm:p-6"><p className="text-xs font-bold uppercase tracking-[.16em] text-white/75">Pequenos lotes</p><p className="mt-2 text-xl font-semibold leading-tight">Feito à mão, confirmado em conversa.</p></div>
+              <img src="/images/products/prato-horizonte.webp" alt="Prato artesanal de borda terrosa" className="aspect-square w-full rounded-[1.25rem] object-cover" width="960" height="960" />
+              <div className="rounded-[1.25rem] bg-[#9c4f38] p-5 text-white sm:p-6"><p className="text-xs font-bold uppercase tracking-[.16em] text-white">Pequenos lotes</p><p className="mt-2 text-xl font-semibold leading-tight">Feito à mão, confirmado em conversa.</p></div>
             </div>
           </div>
         </div>

@@ -33,8 +33,8 @@ export function ProductCatalog({ query }: ProductCatalogProps) {
                   </div>
                   <p className="mt-3 min-h-12 text-sm leading-6 text-[#625d57]">{product.description}</p>
                   <dl className="mt-4 grid grid-cols-2 gap-3 border-y border-[#ded9d1] py-3 text-xs">
-                    <div><dt className="text-[#858078]">Material</dt><dd className="mt-1 font-semibold text-[#47433f]">{product.material}</dd></div>
-                    <div><dt className="text-[#858078]">Prazo demonstrativo</dt><dd className="mt-1 font-semibold text-[#47433f]">{product.leadTime}</dd></div>
+                    <div><dt className="text-[#6f6a63]">Material</dt><dd className="mt-1 font-semibold text-[#47433f]">{product.material}</dd></div>
+                    <div><dt className="text-[#6f6a63]">Prazo demonstrativo</dt><dd className="mt-1 font-semibold text-[#47433f]">{product.leadTime}</dd></div>
                   </dl>
                   <a href={generateWhatsAppLink(product)} target="_blank" rel="noreferrer" className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-[#3f3a35] px-4 text-sm font-semibold transition hover:bg-[#272421] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9c4f38] focus-visible:ring-offset-2"><MessageCircle aria-hidden="true" className="size-4" />Consultar esta peça</a>
                 </div>

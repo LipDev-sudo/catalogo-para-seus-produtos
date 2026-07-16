@@ -12,7 +12,7 @@ export function FeaturesSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl"><p className="text-xs font-bold uppercase tracking-[.18em] text-[#e2a48f]">Catálogo conversacional</p><h2 className="mt-3 text-3xl font-semibold tracking-[-.04em] sm:text-4xl">Da descoberta à conversa, sem passos artificiais.</h2></div>
         <ol className="mt-10 grid gap-px overflow-hidden rounded-[1.5rem] border border-white/15 bg-white/15 md:grid-cols-3">
-          {steps.map((step) => <li key={step.number} className="bg-[#302b27] p-6 sm:p-8"><div className="flex items-center justify-between"><step.icon aria-hidden="true" className="size-5 text-[#e2a48f]" /><span className="text-xs font-bold tracking-[.18em] text-white/40">{step.number}</span></div><h3 className="mt-8 text-xl font-semibold">{step.title}</h3><p className="mt-3 text-sm leading-6 text-white/65">{step.description}</p></li>)}
+          {steps.map((step) => <li key={step.number} className="bg-[#302b27] p-6 sm:p-8"><div className="flex items-center justify-between"><step.icon aria-hidden="true" className="size-5 text-[#e2a48f]" /><span className="text-xs font-bold tracking-[.18em] text-white/60">{step.number}</span></div><h3 className="mt-8 text-xl font-semibold">{step.title}</h3><p className="mt-3 text-sm leading-6 text-white/70">{step.description}</p></li>)}
         </ol>
       </div>
     </section>
