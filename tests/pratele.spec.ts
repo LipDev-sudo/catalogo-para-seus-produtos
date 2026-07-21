@@ -45,7 +45,7 @@ test('has no serious or critical automated accessibility violations', async ({ p
 test('publishes consistent SEO metadata', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('Pratele | Seu trabalho à vista');
-  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://catalogo-para-seus-produtos.vercel.app/');
-  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://catalogo-para-seus-produtos.vercel.app/');
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://pratele.vercel.app/');
+  await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', 'https://pratele.vercel.app/');
   await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href', '/favicon.svg');
 });

@@ -37,13 +37,13 @@
   "description": "Pratele é uma demonstração de catálogo conversacional para pequenos ateliês apresentarem produtos e receberem consultas pelo WhatsApp.",
   "author": "Hamilton Felipe Soares da Silva",
   "license": "MIT",
-  "homepage": "https://catalogo-para-seus-produtos.vercel.app/",
+  "homepage": "https://pratele.vercel.app/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LipDev-sudo/catalogo-para-seus-produtos.git"
+    "url": "git+https://github.com/LipDev-sudo/pratele.git"
   },
   "bugs": {
-    "url": "https://github.com/LipDev-sudo/catalogo-para-seus-produtos/issues"
+    "url": "https://github.com/LipDev-sudo/pratele/issues"
   },
   "keywords": [
     "catalog",

@@ -4,8 +4,8 @@
 
 Pratele é uma demonstração funcional de catálogo conversacional para pequenos ateliês, artesãos e estúdios de produtos sob encomenda. A experiência ajuda visitantes a encontrar uma peça, entender material e prazo e iniciar uma conversa contextualizada pelo WhatsApp.
 
-[![Aplicação](https://img.shields.io/badge/abrir-demonstração-9c4f38?style=for-the-badge)](https://catalogo-para-seus-produtos.vercel.app/)
-[![CI](https://github.com/LipDev-sudo/catalogo-para-seus-produtos/actions/workflows/ci.yml/badge.svg)](https://github.com/LipDev-sudo/catalogo-para-seus-produtos/actions/workflows/ci.yml)
+[![Aplicação](https://img.shields.io/badge/abrir-demonstração-9c4f38?style=for-the-badge)](https://pratele.vercel.app/)
+[![CI](https://github.com/LipDev-sudo/pratele/actions/workflows/ci.yml/badge.svg)](https://github.com/LipDev-sudo/pratele/actions/workflows/ci.yml)
 [![Portfólio](https://img.shields.io/badge/ver-portfólio-272421?style=for-the-badge)](https://lipdev.vercel.app/)
 
 ![Pratele em desktop](public/images/pratele-desktop.png)
