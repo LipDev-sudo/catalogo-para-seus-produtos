@@ -1,132 +1,52 @@
-import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { MessageCircle, Tag, Heart, Eye } from 'lucide-react';
-import { products, generateWhatsAppLink } from '../data/catalog';
-import { ImageWithFallback } from './figma/ImageWithFallback';
-import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import { MessageCircle, SearchX } from 'lucide-react';
+import { useState } from 'react';
+import { filterProducts, generateWhatsAppLink, products } from '../data/catalog';
 
-const categories = ['Todos', ...Array.from(new Set(products.map((p) => p.category)))];
+const categories = ['Todos', 'Café', 'Mesa', 'Decoração'];
+interface ProductCatalogProps { query: string }
 
-export const ProductCatalog: React.FC = () => {
+export function ProductCatalog({ query }: ProductCatalogProps) {
   const [activeCategory, setActiveCategory] = useState('Todos');
-
-  const filteredProducts =
-    activeCategory === 'Todos'
-      ? products
-      : products.filter((p) => p.category === activeCategory);
-
+  const filteredProducts = filterProducts(products, query, activeCategory);
   return (
-    <section className="py-16 md:py-24 bg-[#FAFAFA]" id="produtos">
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Section header */}
-        <div className="text-center mb-10">
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="inline-block bg-[#e6f7ef] text-[#008060] text-sm font-semibold px-4 py-1.5 rounded-full mb-4 border border-[#008060]/10">
-              Nosso Catalogo
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#1a1a1a] mb-3 tracking-tight">
-              Nossos Produtos
-            </h2>
-            <p className="text-gray-500 max-w-xl mx-auto text-lg">
-              Navegue por nosso catalogo e peca diretamente pelo WhatsApp!
-            </p>
-          </motion.div>
+    <section className="py-16 md:py-24" id="catalogo">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-6 border-b border-[#d8d2ca] pb-8 md:grid-cols-[1fr_auto] md:items-end">
+          <div><p className="section-kicker">Ateliê Aurora de Barro</p><h2 className="section-title">Peças para mesa e casa</h2><p className="mt-3 max-w-2xl text-[#625d57]">Cada item representa uma peça demonstrativa. Acabamentos e disponibilidade seriam confirmados diretamente com o ateliê.</p></div>
+          <p aria-live="polite" className="text-sm font-medium text-[#716c65]">{filteredProducts.length} {filteredProducts.length === 1 ? 'peça encontrada' : 'peças encontradas'}</p>
         </div>
-
-        {/* Category filter pills */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
-                activeCategory === cat
-                  ? 'bg-[#008060] text-white shadow-md shadow-[#008060]/20'
-                  : 'bg-white text-[#1a1a1a] hover:bg-[#e6f7ef] hover:text-[#008060] border border-[#e2e8f0]'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+        <div className="my-7 flex gap-2 overflow-x-auto pb-2" aria-label="Filtrar por categoria">
+          {categories.map((category) => {
+            const selected = activeCategory === category;
+            return <button key={category} type="button" aria-pressed={selected} onClick={() => setActiveCategory(category)} className={`filter-pill ${selected ? 'filter-pill-active' : ''}`}>{category}</button>;
+          })}
         </div>
-
-        {/* Masonry product grid */}
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 640: 2, 1024: 3, 1280: 4 }}>
-          <Masonry gutter="20px">
-            {filteredProducts.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className="group bg-white rounded-2xl border border-[#e2e8f0] overflow-hidden hover:shadow-xl hover:shadow-[#008060]/5 hover:border-[#008060]/20 transition-all duration-500"
-              >
-                {/* Image */}
-                <div className="relative overflow-hidden bg-[#FAFAFA]">
-                  <ImageWithFallback
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-
-                  {/* Overlay actions */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300 flex items-center justify-center gap-3 opacity-0 group-hover:opacity-100">
-                    <button className="bg-white/90 backdrop-blur-sm p-2.5 rounded-full shadow-md hover:bg-white transition-colors" aria-label="Favoritar">
-                      <Heart className="size-4 text-[#1a1a1a]" />
-                    </button>
-                    <button className="bg-white/90 backdrop-blur-sm p-2.5 rounded-full shadow-md hover:bg-white transition-colors" aria-label="Ver detalhes">
-                      <Eye className="size-4 text-[#1a1a1a]" />
-                    </button>
+        {filteredProducts.length > 0 ? (
+          <div className="grid gap-x-5 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredProducts.map((product) => (
+              <article key={product.id} className="group min-w-0">
+                <div className="overflow-hidden rounded-[1.25rem] border border-[#ded9d1] bg-white"><img src={product.image} alt={product.name} width="960" height="960" loading="lazy" className="aspect-square w-full object-cover transition duration-500 group-hover:scale-[1.02] motion-reduce:transition-none" /></div>
+                <div className="px-1 pt-5">
+                  <div className="flex items-start justify-between gap-4">
+                    <div><p className="text-xs font-bold uppercase tracking-[.14em] text-[#9c4f38]">{product.category}</p><h3 className="mt-1 text-xl font-semibold tracking-[-.025em]">{product.name}</h3></div>
+                    <p className="shrink-0 text-right text-sm text-[#716c65]">a partir de<strong className="block text-lg text-[#272421]">R$ {product.price.toFixed(2).replace('.', ',')}</strong></p>
                   </div>
-
-                  {/* Category badge */}
-                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm text-[#008060] px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 shadow-sm border border-[#e2e8f0]">
-                    <Tag className="size-3" />
-                    {product.category}
-                  </div>
+                  <p className="mt-3 min-h-12 text-sm leading-6 text-[#625d57]">{product.description}</p>
+                  <dl className="mt-4 grid grid-cols-2 gap-3 border-y border-[#ded9d1] py-3 text-xs">
+                    <div><dt className="text-[#6f6a63]">Material</dt><dd className="mt-1 font-semibold text-[#47433f]">{product.material}</dd></div>
+                    <div><dt className="text-[#6f6a63]">Prazo demonstrativo</dt><dd className="mt-1 font-semibold text-[#47433f]">{product.leadTime}</dd></div>
+                  </dl>
+                  <a href={generateWhatsAppLink(product)} target="_blank" rel="noreferrer" className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full border border-[#3f3a35] px-4 text-sm font-semibold transition hover:bg-[#272421] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9c4f38] focus-visible:ring-offset-2"><MessageCircle aria-hidden="true" className="size-4" />Consultar esta peça</a>
                 </div>
-
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="font-bold text-[#1a1a1a] text-lg mb-1.5 line-clamp-1 group-hover:text-[#008060] transition-colors">
-                    {product.name}
-                  </h3>
-                  <p className="text-gray-400 text-sm mb-4 line-clamp-2 leading-relaxed">
-                    {product.description}
-                  </p>
-
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-2xl font-extrabold text-[#008060]">
-                        R$ {product.price.toFixed(2).replace('.', ',')}
-                      </span>
-                      <p className="text-xs text-gray-400 mt-0.5">
-                        ou 3x de R$ {(product.price / 3).toFixed(2).replace('.', ',')}
-                      </p>
-                    </div>
-                  </div>
-
-                  <a
-                    href={generateWhatsAppLink(product)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-2 w-full bg-[#008060] hover:bg-[#004c3f] text-white py-3 rounded-xl text-sm font-bold transition-all duration-300 shadow-sm hover:shadow-md hover:shadow-[#008060]/20"
-                  >
-                    <MessageCircle className="size-4" />
-                    Pedir pelo WhatsApp
-                  </a>
-                </div>
-              </motion.div>
+              </article>
             ))}
-          </Masonry>
-        </ResponsiveMasonry>
+          </div>
+        ) : (
+          <div className="rounded-[1.5rem] border border-dashed border-[#cfc7bd] bg-white px-6 py-16 text-center">
+            <SearchX aria-hidden="true" className="mx-auto size-8 text-[#9c4f38]" /><h3 className="mt-4 text-xl font-semibold">Nenhuma peça por aqui</h3><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#716c65]">Tente outro termo ou escolha “Todos” para voltar ao catálogo completo.</p><button type="button" onClick={() => setActiveCategory('Todos')} className="mt-5 text-sm font-bold text-[#9c4f38] underline underline-offset-4">Mostrar todas as peças</button>
+          </div>
+        )}
       </div>
     </section>
   );
-};
+}

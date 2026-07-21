@@ -1,119 +1,33 @@
-import React, { useState } from 'react';
-import { ShoppingBag, MessageCircle, Search, Menu, X } from 'lucide-react';
+import { MessageCircle, Search } from 'lucide-react';
+import { generalWhatsAppLink } from '../data/catalog';
+import { BrandMark } from './BrandMark';
 
-export const CatalogHeader: React.FC = () => {
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const whatsappUrl = 'https://wa.me/5511999999999?text=Ol%C3%A1!%20Vim%20pelo%20cat%C3%A1logo%20online';
+interface CatalogHeaderProps { query: string; onQueryChange: (value: string) => void }
 
+export function CatalogHeader({ query, onQueryChange }: CatalogHeaderProps) {
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#e2e8f0] shadow-sm">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6 gap-4">
-        {/* Logo */}
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
-          <div className="rounded-xl bg-[#008060] p-2 shadow-sm">
-            <ShoppingBag className="size-5 text-white" />
-          </div>
-          <span className="text-xl font-bold text-[#1a1a1a] tracking-tight">
-            Minha Loja
-          </span>
+    <header className="sticky top-0 z-50 border-b border-[#ded9d1] bg-[#fdfcf9]/95 backdrop-blur-lg">
+      <div className="mx-auto flex min-h-16 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
+        <a href="#inicio" className="shrink-0 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9c4f38] focus-visible:ring-offset-4"><BrandMark /></a>
+        <label className="relative ml-auto hidden w-full max-w-sm md:block">
+          <span className="sr-only">Buscar no catálogo</span>
+          <Search aria-hidden="true" className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-[#716c65]" />
+          <input type="search" value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder="Buscar peça, material ou categoria" className="h-10 w-full rounded-full border border-[#d8d2ca] bg-white pl-10 pr-4 text-sm outline-none transition focus:border-[#9c4f38] focus:ring-2 focus:ring-[#9c4f38]/20" />
+        </label>
+        <nav aria-label="Navegação principal" className="hidden items-center gap-5 lg:flex">
+          <a href="#catalogo" className="nav-link">Peças</a><a href="#como-funciona" className="nav-link">Como funciona</a>
+        </nav>
+        <a href={generalWhatsAppLink} target="_blank" rel="noreferrer" className="inline-flex min-h-10 shrink-0 items-center justify-center gap-2 rounded-full bg-[#272421] px-4 text-sm font-semibold text-white transition hover:bg-[#9c4f38] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#9c4f38] focus-visible:ring-offset-2">
+          <MessageCircle aria-hidden="true" className="size-4" /><span className="hidden sm:inline">Conversar</span><span className="sr-only sm:hidden">Conversar pelo WhatsApp</span>
         </a>
-
-        {/* Search bar - centered, desktop */}
-        <div className="hidden md:flex flex-1 max-w-md mx-auto">
-          <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Buscar produtos..."
-              className="w-full pl-10 pr-4 py-2 rounded-full border border-[#e2e8f0] bg-[#FAFAFA] text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#008060]/30 focus:border-[#008060] transition-all"
-            />
-          </div>
-        </div>
-
-        {/* Navigation - desktop */}
-        <nav className="hidden lg:flex items-center gap-6">
-          <a href="#produtos" className="text-sm font-medium text-gray-600 hover:text-[#008060] transition-colors">
-            Produtos
-          </a>
-          <a href="#vantagens" className="text-sm font-medium text-gray-600 hover:text-[#008060] transition-colors">
-            Vantagens
-          </a>
-          <a href="#contato" className="text-sm font-medium text-gray-600 hover:text-[#008060] transition-colors">
-            Contato
-          </a>
-        </nav>
-
-        {/* Right actions */}
-        <div className="flex items-center gap-2 shrink-0">
-          {/* Mobile search toggle */}
-          <button
-            onClick={() => setSearchOpen(!searchOpen)}
-            className="md:hidden p-2 rounded-xl text-gray-500 hover:text-[#008060] hover:bg-[#e6f7ef] transition-colors"
-            aria-label="Buscar"
-          >
-            <Search className="size-5" />
-          </button>
-
-          {/* WhatsApp button */}
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 bg-[#008060] hover:bg-[#004c3f] text-white px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md"
-          >
-            <MessageCircle className="size-4" />
-            <span className="hidden sm:inline">WhatsApp</span>
-          </a>
-
-          {/* Mobile menu toggle */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl text-gray-500 hover:text-[#008060] hover:bg-[#e6f7ef] transition-colors"
-            aria-label="Menu"
-          >
-            {mobileMenuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
-          </button>
-        </div>
       </div>
-
-      {/* Mobile search bar */}
-      {searchOpen && (
-        <div className="md:hidden px-4 pb-3 border-b border-[#e2e8f0]">
-          <div className="relative w-full">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Buscar produtos..."
-              autoFocus
-              className="w-full pl-10 pr-4 py-2.5 rounded-full border border-[#e2e8f0] bg-[#FAFAFA] text-sm text-[#1a1a1a] placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#008060]/30 focus:border-[#008060] transition-all"
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <nav className="lg:hidden px-4 pb-4 border-b border-[#e2e8f0] bg-white">
-          <ul className="space-y-1">
-            <li>
-              <a href="#produtos" className="block px-4 py-2.5 rounded-xl text-sm font-medium text-[#1a1a1a] hover:bg-[#e6f7ef] hover:text-[#008060] transition-colors">
-                Produtos
-              </a>
-            </li>
-            <li>
-              <a href="#vantagens" className="block px-4 py-2.5 rounded-xl text-sm font-medium text-[#1a1a1a] hover:bg-[#e6f7ef] hover:text-[#008060] transition-colors">
-                Vantagens
-              </a>
-            </li>
-            <li>
-              <a href="#contato" className="block px-4 py-2.5 rounded-xl text-sm font-medium text-[#1a1a1a] hover:bg-[#e6f7ef] hover:text-[#008060] transition-colors">
-                Contato
-              </a>
-            </li>
-          </ul>
-        </nav>
-      )}
+      <div className="border-t border-[#ece8e2] px-4 py-2.5 md:hidden">
+        <label className="relative mx-auto block max-w-7xl">
+          <span className="sr-only">Buscar no catálogo</span>
+          <Search aria-hidden="true" className="absolute left-3.5 top-1/2 size-4 -translate-y-1/2 text-[#716c65]" />
+          <input type="search" value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder="Buscar no catálogo" className="h-11 w-full rounded-full border border-[#d8d2ca] bg-white pl-10 pr-4 text-base outline-none transition focus:border-[#9c4f38] focus:ring-2 focus:ring-[#9c4f38]/20" />
+        </label>
+      </div>
     </header>
   );
-};
+}

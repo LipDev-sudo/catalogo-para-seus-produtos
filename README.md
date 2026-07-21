@@ -1,67 +1,63 @@
-# Catalogo de Produtos
+# Pratele
 
-Catalogo digital para pequenos negocios, com vitrine de produtos, carrinho visual e estrutura pronta para vendas por WhatsApp.
+> Seu trabalho à vista.
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-00D4FF?style=for-the-badge)](https://catalogo-para-seus-produtos.vercel.app/)
-[![Portfolio](https://img.shields.io/badge/Portfolio-LipDev.BR-BEF264?style=for-the-badge)](https://lipdev.vercel.app/)
-[![GitHub](https://img.shields.io/badge/GitHub-LipDev--sudo-181717?style=for-the-badge&logo=github)](https://github.com/LipDev-sudo)
+Pratele é uma demonstração funcional de catálogo conversacional para pequenos ateliês, artesãos e estúdios de produtos sob encomenda. A experiência ajuda visitantes a encontrar uma peça, entender material e prazo e iniciar uma conversa contextualizada pelo WhatsApp.
 
-## Visao do projeto
+[![Aplicação](https://img.shields.io/badge/abrir-demonstração-9c4f38?style=for-the-badge)](https://catalogo-para-seus-produtos.vercel.app/)
+[![CI](https://github.com/LipDev-sudo/catalogo-para-seus-produtos/actions/workflows/ci.yml/badge.svg)](https://github.com/LipDev-sudo/catalogo-para-seus-produtos/actions/workflows/ci.yml)
+[![Portfólio](https://img.shields.io/badge/ver-portfólio-272421?style=for-the-badge)](https://lipdev.vercel.app/)
 
-Projeto ideal para empreendedores que querem sair da planilha ou do Instagram e ter uma vitrine propria.
+![Pratele em desktop](public/images/pratele-desktop.png)
 
-## Demo
+## Posicionamento
 
-- Aplicacao online: https://catalogo-para-seus-produtos.vercel.app/
-- Portfolio principal: https://lipdev.vercel.app/
+- **Público:** pequenos ateliês, profissionais independentes e negócios de produtos autorais.
+- **Fluxo principal:** busca ou filtro → leitura dos detalhes → consulta contextual pelo WhatsApp.
+- **Diferencial:** apresentação leve para vendas por conversa, sem simular checkout, estoque ou estrutura de marketplace.
+- **Demonstração:** o Ateliê Aurora de Barro, seus produtos, preços e prazos são inteiramente fictícios.
 
-## Destaques
+## O que funciona
 
-- Listagem de produtos com grid responsivo
-- Pagina individual para detalhe do produto
-- Carrinho visual para simular fluxo de compra
-- Estrutura simples de customizar para diferentes nichos
-- Boa base para integracao com WhatsApp, estoque e checkout
+- busca sem distinção de acentos;
+- filtros por categoria;
+- catálogo responsivo com informações de material e prazo;
+- links de WhatsApp preenchidos para cada produto;
+- estados vazios e navegação por teclado;
+- metadata, Open Graph, favicon, robots e sitemap;
+- testes unitários, E2E e auditoria automatizada de acessibilidade.
 
 ## Stack
 
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
+React 18, TypeScript, Vite, Tailwind CSS, Vitest, Playwright e Axe.
 
-## Como rodar localmente
+## Executar localmente
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-Para gerar uma build de producao:
+Validação completa:
 
 ```bash
+npm run typecheck
+npm run lint
+npm test
 npm run build
-npm run preview
+npm run test:e2e
+npm audit
 ```
 
-## Estrutura de evolucao
+## Limites da demonstração
 
-Este projeto pode evoluir com:
+- não há backend, autenticação, checkout ou sincronização de estoque;
+- o WhatsApp é aberto sem número predefinido;
+- nenhuma métrica, avaliação, cliente ou resultado comercial é apresentado como real;
+- as fotografias de apoio são provenientes do [Unsplash](https://unsplash.com/) e representam o catálogo fictício.
 
-- Integracao com API real
-- Painel administrativo
-- Autenticacao de usuarios
-- Checkout ou integracao com WhatsApp
-- Banco de dados para produtos, pedidos e clientes
+## Autoria
 
-## Autor
+Desenvolvido por [Hamilton Felipe Soares da Silva](https://www.linkedin.com/in/hamilton-felipe-875054383/). Veja outros projetos no [portfólio](https://lipdev.vercel.app/).
 
-Desenvolvido por **Hamilton Felipe Soares da Silva** - LipDev.BR.
-
-- Portfolio: https://lipdev.vercel.app/
-- GitHub: https://github.com/LipDev-sudo
-- LinkedIn: https://www.linkedin.com/in/hamilton-felipe-875054383/
-
-## Licenca
-
-Este projeto esta sob a licenca MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Licenciado sob a [MIT License](LICENSE).
