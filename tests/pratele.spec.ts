@@ -26,7 +26,8 @@ test('presents and filters the demonstrative catalog without console errors', as
 
 test('category filters remain keyboard-operable', async ({ page }) => {
   await page.goto('/#catalogo');
-  const decoration = page.getByRole('button', { name: 'Decoração' });
+  const filters = page.getByRole('group', { name: 'Filtrar por categoria' });
+  const decoration = filters.getByRole('button', { name: 'Decoração' });
   await decoration.focus();
   await expect(decoration).toBeFocused();
   await decoration.press('Enter');

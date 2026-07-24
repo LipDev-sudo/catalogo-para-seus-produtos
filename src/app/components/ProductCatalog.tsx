@@ -18,7 +18,7 @@ export function ProductCatalog({ query, onQueryChange }: ProductCatalogProps) {
           <div><p className="section-kicker">Ateliê Aurora de Barro</p><h2 className="section-title">Peças para mesa e casa</h2><p className="mt-3 max-w-2xl text-[#625d57]">Cada item representa uma peça demonstrativa. Acabamentos e disponibilidade seriam confirmados diretamente com o ateliê.</p></div>
           <p aria-live="polite" className="text-sm font-medium text-[#716c65]">{filteredProducts.length} {filteredProducts.length === 1 ? 'peça encontrada' : 'peças encontradas'}</p>
         </div>
-        <div className="my-7 flex gap-2 overflow-x-auto pb-2" aria-label="Filtrar por categoria">
+        <div className="my-7 flex gap-2 overflow-x-auto pb-2" role="group" aria-label="Filtrar por categoria">
           {categories.map((category) => {
             const selected = activeCategory === category;
             return <button key={category} type="button" aria-pressed={selected} onClick={() => setActiveCategory(category)} className={`filter-pill ${selected ? 'filter-pill-active' : ''}`}>{category}</button>;
