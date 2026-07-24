@@ -34,6 +34,18 @@ test('category filters remain keyboard-operable', async ({ page }) => {
   await expect(page.getByText('2 peças encontradas')).toBeVisible();
 });
 
+test('empty-state action restores the full catalog', async ({ page }) => {
+  await page.goto('/');
+  const search = page.getByRole('searchbox', { name: 'Buscar no catálogo' }).filter({ visible: true });
+
+  await search.fill('produto inexistente');
+  await expect(page.getByRole('heading', { level: 3, name: 'Nenhuma peça por aqui' })).toBeVisible();
+  await page.getByRole('button', { name: 'Mostrar todas as peças' }).click();
+
+  await expect(search).toHaveValue('');
+  await expect(page.getByText('6 peças encontradas')).toBeVisible();
+});
+
 test('has no serious or critical automated accessibility violations', async ({ page }) => {
   await page.goto('/');
   const results = await new AxeBuilder({ page }).analyze();
