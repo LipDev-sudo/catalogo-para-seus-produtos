@@ -26,12 +26,25 @@ test('presents and filters the demonstrative catalog without console errors', as
 
 test('category filters remain keyboard-operable', async ({ page }) => {
   await page.goto('/#catalogo');
-  const decoration = page.getByRole('button', { name: 'Decoração' });
+  const filters = page.getByRole('group', { name: 'Filtrar por categoria' });
+  const decoration = filters.getByRole('button', { name: 'Decoração' });
   await decoration.focus();
   await expect(decoration).toBeFocused();
   await decoration.press('Enter');
   await expect(decoration).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByText('2 peças encontradas')).toBeVisible();
+});
+
+test('empty-state action restores the full catalog', async ({ page }) => {
+  await page.goto('/');
+  const search = page.getByRole('searchbox', { name: 'Buscar no catálogo' }).filter({ visible: true });
+
+  await search.fill('produto inexistente');
+  await expect(page.getByRole('heading', { level: 3, name: 'Nenhuma peça por aqui' })).toBeVisible();
+  await page.getByRole('button', { name: 'Mostrar todas as peças' }).click();
+
+  await expect(search).toHaveValue('');
+  await expect(page.getByText('6 peças encontradas')).toBeVisible();
 });
 
 test('has no serious or critical automated accessibility violations', async ({ page }) => {

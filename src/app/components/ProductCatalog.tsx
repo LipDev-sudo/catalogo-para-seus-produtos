@@ -3,9 +3,12 @@ import { useState } from 'react';
 import { filterProducts, generateWhatsAppLink, products } from '../data/catalog';
 
 const categories = ['Todos', 'Café', 'Mesa', 'Decoração'];
-interface ProductCatalogProps { query: string }
+interface ProductCatalogProps {
+  query: string;
+  onQueryChange: (value: string) => void;
+}
 
-export function ProductCatalog({ query }: ProductCatalogProps) {
+export function ProductCatalog({ query, onQueryChange }: ProductCatalogProps) {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const filteredProducts = filterProducts(products, query, activeCategory);
   return (
@@ -15,7 +18,7 @@ export function ProductCatalog({ query }: ProductCatalogProps) {
           <div><p className="section-kicker">Ateliê Aurora de Barro</p><h2 className="section-title">Peças para mesa e casa</h2><p className="mt-3 max-w-2xl text-[#625d57]">Cada item representa uma peça demonstrativa. Acabamentos e disponibilidade seriam confirmados diretamente com o ateliê.</p></div>
           <p aria-live="polite" className="text-sm font-medium text-[#716c65]">{filteredProducts.length} {filteredProducts.length === 1 ? 'peça encontrada' : 'peças encontradas'}</p>
         </div>
-        <div className="my-7 flex gap-2 overflow-x-auto pb-2" aria-label="Filtrar por categoria">
+        <div className="my-7 flex gap-2 overflow-x-auto pb-2" role="group" aria-label="Filtrar por categoria">
           {categories.map((category) => {
             const selected = activeCategory === category;
             return <button key={category} type="button" aria-pressed={selected} onClick={() => setActiveCategory(category)} className={`filter-pill ${selected ? 'filter-pill-active' : ''}`}>{category}</button>;
@@ -43,7 +46,7 @@ export function ProductCatalog({ query }: ProductCatalogProps) {
           </div>
         ) : (
           <div className="rounded-[1.5rem] border border-dashed border-[#cfc7bd] bg-white px-6 py-16 text-center">
-            <SearchX aria-hidden="true" className="mx-auto size-8 text-[#9c4f38]" /><h3 className="mt-4 text-xl font-semibold">Nenhuma peça por aqui</h3><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#716c65]">Tente outro termo ou escolha “Todos” para voltar ao catálogo completo.</p><button type="button" onClick={() => setActiveCategory('Todos')} className="mt-5 text-sm font-bold text-[#9c4f38] underline underline-offset-4">Mostrar todas as peças</button>
+            <SearchX aria-hidden="true" className="mx-auto size-8 text-[#9c4f38]" /><h3 className="mt-4 text-xl font-semibold">Nenhuma peça por aqui</h3><p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#716c65]">Tente outro termo ou escolha “Todos” para voltar ao catálogo completo.</p><button type="button" onClick={() => { setActiveCategory('Todos'); onQueryChange(''); }} className="mt-5 text-sm font-bold text-[#9c4f38] underline underline-offset-4">Mostrar todas as peças</button>
           </div>
         )}
       </div>

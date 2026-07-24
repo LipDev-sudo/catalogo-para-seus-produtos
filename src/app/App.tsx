@@ -14,7 +14,7 @@ export default function App() {
       <CatalogHeader query={query} onQueryChange={setQuery} />
       <main>
         <HeroSection />
-        <ProductCatalog query={query} />
+        <ProductCatalog query={query} onQueryChange={setQuery} />
         <FeaturesSection />
       </main>
       <CatalogFooter />
